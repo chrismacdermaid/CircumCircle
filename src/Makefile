@@ -13,7 +13,7 @@ CLASSES:=$(patsubst %.java,%.class,$(wildcard *.java))
 
 default: server 
 
-classes : $(SRC)
+classes: $(SRC)
 	$(JC) $(JFLAGS) $(SRC)
 
 server: classes

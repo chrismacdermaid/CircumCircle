@@ -44,8 +44,7 @@ public class Circumcircle {
   {
     int i;
     if(angle<=180){
-      for( i=0; i<numberOfProteins/2 ;i++)
-      {
+      for( i=0; i<numberOfProteins/2 ;i++) {
         proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(90));
         proteins.elementAt(i).translate(radius+(thickness/2), 0, 0);
         //proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(i*(angle/(numberOfProteins/4))+15));
@@ -53,8 +52,8 @@ public class Circumcircle {
         proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(i*(360/(numberOfProteins/2-1))));
         proteins.elementAt(i).print();
       }
-      for(; i<numberOfProteins ;i++)
-      {
+
+      for(; i<numberOfProteins ;i++) {
         proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(90));
         proteins.elementAt(i).translate(radius+(thickness/2), 0, 0);
         //proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(i*(angle/(numberOfProteins/4))+15));
@@ -63,10 +62,10 @@ public class Circumcircle {
         proteins.elementAt(i).print();
       }
     }
-    else
-    {
-      for( i=0; i<numberOfProteins/2 ;i++)
-      {
+
+    else {
+     
+      for( i=0; i<numberOfProteins/2 ;i++) {
         proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(90));
         proteins.elementAt(i).translate(radius+(thickness/2), 0, 0);
         //proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(i*(angle/(numberOfProteins/4))+15));
@@ -74,8 +73,8 @@ public class Circumcircle {
         proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(i*(360/(numberOfProteins/2))));
         proteins.elementAt(i).print();
       }
-      for(; i<numberOfProteins ;i++)
-      {
+  
+      for(; i<numberOfProteins ;i++) {
         proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(90));
         proteins.elementAt(i).translate(radius+(thickness/2), 0, 0);
         //proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(i*(angle/(numberOfProteins/4))+15));
@@ -83,9 +82,7 @@ public class Circumcircle {
         proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(i*(360/(numberOfProteins/2))));
         proteins.elementAt(i).print();
       }
-
     }
-
   }
 
   public Circumcircle(String Radius, 
@@ -113,6 +110,7 @@ public class Circumcircle {
       this.angle = Float.parseFloat(Angle);
     else
       this.angle=(float) 360;
+
     this.numberOfProteins = numberOfProteins;
     this.email=email;
     Date dNow = new Date( );
@@ -121,6 +119,7 @@ public class Circumcircle {
     this.filelipid=ft.format(dNow)+"lipids.pdb";
     fmt1 = new Formatter(filename);
     proteins = new Vector<Protein>();
+
     for(int i=0; i<numberOfProteins ;i++)
       proteins.addElement(new Protein(namesOfProteins.elementAt(i),radius,fmt1));
 
