@@ -17,71 +17,67 @@ public class Circumcircle {
   float maxYY = 0, minYY=0;
   Vector<Protein> proteins;
 
-  static double convertDegToRad(double deg) { 
-    return(Math.PI*deg/180);
-  }
-
-  static double convertRadToDeg(double rad) {
-    return(180*rad/Math.PI);
-  }
-
   void determine2d() throws IOException {
-    for(int i=0; i<numberOfProteins ;i++) {
+    float ninetydeg = (float)(Math.PI / 2.0);
 
-      proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(90));
-      proteins.elementAt(i).rotateAroundXAxis((float)convertDegToRad(90));
+    for(int i=0; i<numberOfProteins ;i++) {
+      proteins.elementAt(i).rotateAroundYAxis(ninetydeg);
+      proteins.elementAt(i).rotateAroundXAxis(ninetydeg);
       proteins.elementAt(i).translate(radius+(thickness/2), 0, 0);
-      proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(i*(angle/numberOfProteins)));
+      proteins.elementAt(i).rotateAroundZAxis((float)Math.toRadians(i*(angle/numberOfProteins)));
       proteins.elementAt(i).print();
       if(proteins.elementAt(i).maxY.y > maxYY)
-        maxYY=proteins.elementAt(i).maxY.y;
+	maxYY=proteins.elementAt(i).maxY.y;
       if(proteins.elementAt(i).minY.y < minYY)
-        minYY=proteins.elementAt(i).minY.y;
+	minYY=proteins.elementAt(i).minY.y;
     }
   }
 
   void determine3d() throws IOException
   {
     int i;
-    if(angle<=180){
-      for( i=0; i<numberOfProteins/2 ;i++) {
-        proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(90));
-        proteins.elementAt(i).translate(radius+(thickness/2), 0, 0);
-        //proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(i*(angle/(numberOfProteins/4))+15));
-        proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(30));
-        proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(i*(360/(numberOfProteins/2-1))));
-        proteins.elementAt(i).print();
+    float ninetydeg = (float)(Math.PI / 2.0);
+    float thirtydeg = (float)(Math.PI / 6.0);
+    float fiftendeg = (float)(Math.PI / 12.0);
+    float rt = (float)(radius + (thickness / 2.0)); 
+
+    if (angle <= 180) {
+
+      for(i=0; i < numberOfProteins / 2.0; i++) {
+	proteins.elementAt(i).rotateAroundYAxis(ninetydeg);
+	proteins.elementAt(i).translate(rt, 0, 0);
+	proteins.elementAt(i).rotateAroundZAxis(thirtydeg);
+	proteins.elementAt(i).rotateAroundYAxis((float)Math.toRadians(i * (360.0 / ((numberOfProteins / 2)-1) )));
+	proteins.elementAt(i).print();
       }
 
-      for(; i<numberOfProteins ;i++) {
-        proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(90));
-        proteins.elementAt(i).translate(radius+(thickness/2), 0, 0);
-        //proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(i*(angle/(numberOfProteins/4))+15));
-        proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(15));
-        proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(i*(360/(numberOfProteins/2+1))));
-        proteins.elementAt(i).print();
+      for(; i < numberOfProteins; i++) {
+	proteins.elementAt(i).rotateAroundYAxis(ninetydeg);
+	proteins.elementAt(i).translate(rt, 0, 0);
+	proteins.elementAt(i).rotateAroundZAxis(fiftendeg);
+	proteins.elementAt(i).rotateAroundYAxis((float)Math.toRadians(i * (360.0 / ((numberOfProteins / 2)+1) )));
+	proteins.elementAt(i).print();
       }
-    }
 
-    else {
-     
-      for( i=0; i<numberOfProteins/2 ;i++) {
-        proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(90));
-        proteins.elementAt(i).translate(radius+(thickness/2), 0, 0);
-        //proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(i*(angle/(numberOfProteins/4))+15));
-        proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(30));
-        proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(i*(360/(numberOfProteins/2))));
-        proteins.elementAt(i).print();
+    } else {
+
+      System.out.print("Your Mom");
+      for(i=0; i < numberOfProteins / 2.0; i++) {
+	proteins.elementAt(i).rotateAroundYAxis(ninetydeg);
+	proteins.elementAt(i).translate(rt, 0, 0);
+	proteins.elementAt(i).rotateAroundZAxis(thirtydeg);
+	proteins.elementAt(i).rotateAroundYAxis((float)Math.toRadians(i * (360.0  / (numberOfProteins / 2.0) )));
+	proteins.elementAt(i).print();
       }
-  
-      for(; i<numberOfProteins ;i++) {
-        proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(90));
-        proteins.elementAt(i).translate(radius+(thickness/2), 0, 0);
-        //proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(i*(angle/(numberOfProteins/4))+15));
-        proteins.elementAt(i).rotateAroundZAxis((float)convertDegToRad(-30));
-        proteins.elementAt(i).rotateAroundYAxis((float)convertDegToRad(i*(360/(numberOfProteins/2))));
-        proteins.elementAt(i).print();
+
+      for(; i<numberOfProteins; i++) {
+	proteins.elementAt(i).rotateAroundYAxis(ninetydeg);
+	proteins.elementAt(i).translate(rt, 0, 0);
+	proteins.elementAt(i).rotateAroundZAxis((float)(-1.0*thirtydeg));
+	proteins.elementAt(i).rotateAroundYAxis((float)Math.toRadians(i * (360.0 / (numberOfProteins / 2.0) )));
+	proteins.elementAt(i).print();
       }
+
     }
   }
 
@@ -92,14 +88,12 @@ public class Circumcircle {
       int numberOfProteins,
       Vector<String> namesOfProteins) throws IOException {
 
-    if(!Radius.startsWith("auto")) {
+    this.radius = 150; 
+    if (numberOfProteins > 5)
+      this.radius = 350;
+
+    if(!Radius.startsWith("auto"))
       this.radius = Float.parseFloat(Radius);
-    } else {
-      if(numberOfProteins<6)
-        this.radius=150;
-      else
-        this.radius=350;
-    }
 
     if(!Thickness.startsWith("auto"))
       this.thickness = Float.parseFloat(Thickness);
@@ -109,7 +103,7 @@ public class Circumcircle {
     if(!Angle.startsWith("auto"))
       this.angle = Float.parseFloat(Angle);
     else
-      this.angle=(float) 360;
+      this.angle=360;
 
     this.numberOfProteins = numberOfProteins;
     this.email=email;
@@ -133,14 +127,19 @@ public class Circumcircle {
       Vector<String> namesOfProteins, 
       String str) throws IOException {
 
-    if(!Radius.startsWith("auto")) {
+    // Parse Radius Entry
+    this.radius = 150; 
+    if (numberOfProteins > 5)
+      this.radius = 350;
+
+    if(!Radius.startsWith("auto"))
       this.radius = Float.parseFloat(Radius);
-    } else {
-      if(numberOfProteins<6)
-        this.radius=150;
-      else
-        this.radius=350;
-    }
+
+    // Parse Angle Entry
+    if(!Thickness.startsWith("auto"))
+      this.thickness = Float.parseFloat(Thickness);
+    else
+      this.thickness=30;
 
     if(!Thickness.startsWith("auto"))
       this.thickness = Float.parseFloat(Thickness);
@@ -171,36 +170,39 @@ public class Circumcircle {
     float insideRadius = radius, outsideRadius = insideRadius+thickness;
     float Teta=0;
     float teta=dis*((float) Math.asin(1/insideRadius));
-    for(int i = 0; Teta <= convertDegToRad(angle);Teta+=teta) {
+    double angle1 = Math.toRadians(angle);
+
+    for(int i = 0; Teta <= angle1; Teta+=teta) {
       for(float j=minYY; j<maxYY; j=j+dis,i++) {
-        fmt1.format("HETATM%5d  N   DUM  %4d    %8.3f%8.3f%8.3f\n", 
-            i, 9999, (float)insideRadius*Math.cos(Teta),(float)insideRadius*Math.sin(Teta), (float)j);
-        fmt1.format("HETATM%5d  O   DUM  %4d    %8.3f%8.3f%8.3f\n", 
-            i, 9998, (float)outsideRadius*Math.cos(Teta),(float)outsideRadius*Math.sin(Teta), (float)j);
+	fmt1.format("HETATM%5d  N   DUM  %4d    %8.3f%8.3f%8.3f\n", 
+	    i, 9999, (float)insideRadius*Math.cos(Teta),(float)insideRadius*Math.sin(Teta), (float)j);
+	fmt1.format("HETATM%5d  O   DUM  %4d    %8.3f%8.3f%8.3f\n", 
+	    i, 9998, (float)outsideRadius*Math.cos(Teta),(float)outsideRadius*Math.sin(Teta), (float)j);
       }
     }
     fmt1.close();
   }
 
   void draw3DMembrane() {
-    float angle2=180;
     float insideRadius = radius, outsideRadius = insideRadius+thickness;
     float Teta=0, Feta=0;
-    float teta=8*(float) Math.asin(1/insideRadius);
-    float feta=8*(float) Math.asin(1/insideRadius);
+    float teta=8*(float) Math.asin(1.0 / insideRadius);
+    float feta=8*(float) Math.asin(1.0 / insideRadius);
+
+    double angle1 = Math.toRadians(angle);
+    double angle2 = Math.PI;
 
     Feta=feta;
-    for(int i=0; Feta <= convertDegToRad(angle);Feta+=feta) {
-      Teta=0;
-      for(; Teta <= convertDegToRad(angle2);Teta+=teta,i++) {
-        fmt1.format("HETATM%5d  N   DUM  %4d    %8.3f%8.3f%8.3f\n", 
-            i, 9999, (float)insideRadius*Math.sin(Feta)*Math.cos(Teta),
-            (float)insideRadius*Math.sin(Feta)*Math.sin(Teta), 
-            (float)insideRadius*Math.cos(Feta));
-        fmt1.format("HETATM%5d  O   DUM  %4d    %8.3f%8.3f%8.3f\n", 
-            i, 9998, (float)outsideRadius*Math.sin(Feta)*Math.cos(Teta),
-            (float)outsideRadius*Math.sin(Feta)*Math.sin(Teta), 
-            (float)outsideRadius*Math.cos(Feta));
+    for(int i=0; Feta <= angle1; Feta+=feta) {
+      for(Teta = 0; Teta <= angle2; Teta+=teta,i++) {
+	fmt1.format("HETATM%5d  N   DUM  %4d    %8.3f%8.3f%8.3f\n", 
+	    i, 9999, (float)insideRadius*Math.sin(Feta)*Math.cos(Teta),
+	    (float)insideRadius*Math.sin(Feta)*Math.sin(Teta), 
+	    (float)insideRadius*Math.cos(Feta));
+	fmt1.format("HETATM%5d  O   DUM  %4d    %8.3f%8.3f%8.3f\n", 
+	    i, 9998, (float)outsideRadius*Math.sin(Feta)*Math.cos(Teta),
+	    (float)outsideRadius*Math.sin(Feta)*Math.sin(Teta), 
+	    (float)outsideRadius*Math.cos(Feta));
       }
     }
     fmt1.close();

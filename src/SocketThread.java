@@ -122,7 +122,7 @@ public class SocketThread extends Thread {
 
 	  } catch(Exception e) {
 	    pstream.println(e.getMessage());
-	    pstream.println("something went wrong! Try again");
+	    pstream.println("\nsomething went wrong! Try again");
 	  }
 	
 	} else {
@@ -153,7 +153,7 @@ public class SocketThread extends Thread {
 
 	  } catch(Exception e) {
 	    pstream.println(e.getMessage());
-	    pstream.println("something went wrong! Try again");
+	    pstream.println("\nsomething went wrong! Try again");
 	  }
 	}
       
@@ -181,7 +181,7 @@ public class SocketThread extends Thread {
 
 	  } catch(Exception e) {
 	    pstream.println(e.getMessage());
-	    pstream.println("something went wrong! Try again");
+	    pstream.println("\nsomething went wrong! Try again");
 	  }
 	
 	} else {
@@ -211,7 +211,7 @@ public class SocketThread extends Thread {
 
 	  } catch(Exception e) {
 	    pstream.println(e.getMessage());
-	    pstream.println("something went wrong! Try again");
+	    pstream.println("\nsomething went wrong! Try again");
 	  }
 	
 	}
